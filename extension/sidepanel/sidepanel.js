@@ -575,7 +575,12 @@ function renderDashStageList(activeIndex = MODE_ORDER.indexOf(state.mode)) {
   if (!els.dashStageList) return;
   els.dashStageList.innerHTML = "";
 
+  // Show the stage that just finished and the one in progress. At the very
+  // start there is nothing finished yet, so show the current and the next stage.
+  const firstShown = Math.max(0, Math.min(activeIndex - 1, MODE_ORDER.length - 2));
+
   MODE_ORDER.forEach((mode, index) => {
+    if (index < firstShown || index > firstShown + 1) return;
     const row = document.createElement("div");
     row.className = "dash-stage";
     row.dataset.state = index === activeIndex ? "active" : index < activeIndex ? "done" : "idle";
@@ -595,6 +600,13 @@ function renderDashStageList(activeIndex = MODE_ORDER.indexOf(state.mode)) {
 
     row.append(dot, name, meta);
     els.dashStageList.appendChild(row);
+  });
+}
+
+// A failed avatar load should fall back to the gradient tile, not a broken-image glyph
+if (els.dashRepoImage) {
+  els.dashRepoImage.addEventListener("error", () => {
+    els.dashRepoImage.hidden = true;
   });
 }
 
@@ -754,6 +766,8 @@ function setView(view) {
   if (els.dashboardPage) els.dashboardPage.hidden = !isDashboard;
   if (els.prPage) els.prPage.hidden = !isPr;
   if (els.composerArea) els.composerArea.hidden = isDashboard || isPr;
+  // The composer is hidden on the dashboard, so its height reads as 0 there; re-measure once it is visible
+  if (!isDashboard && !isPr) autoResize();
 
   if (els.dashboardBtn) {
     els.dashboardBtn.classList.toggle("is-active", isDashboard);

@@ -10,7 +10,19 @@
   <div class="app">
     <header class="topbar">
       <div class="brand">
-        <span class="brand-mark" id="brandMark" data-state="idle" aria-hidden="true"></span>
+        <span class="brand-mark" id="brandMark" data-state="idle" aria-hidden="true">
+          <svg viewBox="0 0 40 40" fill="none">
+            <defs>
+              <linearGradient id="dsLogoGrad" x1="6" y1="6" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#a78bfa" />
+                <stop offset="0.5" stop-color="#3b82f6" />
+                <stop offset="1" stop-color="#22d3ee" />
+              </linearGradient>
+            </defs>
+            <path d="M9 7h10.5C28.6 7 34 12.6 34 20s-5.4 13-14.5 13H9V7Z" stroke="url(#dsLogoGrad)" stroke-width="3.4" stroke-linejoin="round" />
+            <path d="M15 14.5h4.6c3.8 0 6.4 2.4 6.4 5.5s-2.6 5.5-6.4 5.5H15v-11Z" fill="url(#dsLogoGrad)" opacity="0.9" />
+          </svg>
+        </span>
         <span class="brand-copy">
           <span class="brand-name">DevStart AI</span>
           <span class="brand-sub">Repository intelligence</span>
@@ -161,7 +173,7 @@
           </div>
         </div>
 
-        <div class="dash-card">
+        <div class="dash-card process-card">
           <div class="dash-card-head">
             <span>AI process</span>
             <span id="dashStage">Map · step 1 of 5</span>
@@ -296,10 +308,18 @@
 
     <nav class="bottom-nav" aria-label="DevStart AI navigation">
       <button class="bottom-nav-btn is-active" id="bottomDashboardBtn" type="button" aria-pressed="true">
-        <span aria-hidden="true">▦</span><span>Dashboard</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="4" y="4" width="6" height="7" rx="1" /><rect x="14" y="4" width="6" height="4" rx="1" />
+          <rect x="14" y="12" width="6" height="8" rx="1" /><rect x="4" y="15" width="6" height="5" rx="1" />
+        </svg>
+        <span>Dashboard</span>
       </button>
       <button class="bottom-nav-btn" id="bottomPrBtn" type="button" aria-pressed="false">
-        <span aria-hidden="true">⑂</span><span>Auto Pull Request</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="6" cy="6" r="2.5" /><circle cx="6" cy="18" r="2.5" /><path d="M6 8.5v7" />
+          <circle cx="18" cy="18" r="2.5" /><path d="M18 15.5V9a3 3 0 0 0-3-3h-2" /><path d="m15 3-2 3 2 3" />
+        </svg>
+        <span>Auto Pull Request</span>
       </button>
     </nav>
   </div>
